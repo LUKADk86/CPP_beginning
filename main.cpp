@@ -1,19 +1,37 @@
 
 
 #include <iostream>
-#include <fstream>
+#include <string>
+#include <ctime>
+#include <cstdlib>
+
 using namespace std;
 
 int main()
 {
-    ifstream fichier("/home/lounis/Bureau/devops/ProjetctC++/CPP_beginning/exemple.txt");  //On ouvre le fichier
-    fichier.seekg(0, ios::end);  //On se déplace à la fin du fichier
+    cout << "saisissez un mot" << endl;
+    string word;
+    string gessWord;
+    cin >>word;
+    string selectedWord(word);
+    string mix;
+while (word.size()!=0){
+    srand(time(0));
 
-    int taille;
-    taille = fichier.tellg();
-    //On récupère la position qui correspond donc a la taille du fichier !
+    int position = rand() % word.size();
 
-    cout << "Taille du fichier : " << taille << " octets." << endl;
+    mix += word[position];
+    word.erase(position, 1);
+}
 
+do {
+     cout << endl << "Quel est ce mot ? " << mix << endl;
+      cin >> gessWord;
+if(selectedWord !=gessWord){
+cout << "word" << selectedWord << "gessword" << gessWord <<endl;
+} else{
+cout << "bravo" << endl;
+}
+} while(selectedWord !=gessWord);
     return 0;
 }
